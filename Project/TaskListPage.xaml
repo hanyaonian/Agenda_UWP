@@ -1,0 +1,59 @@
+﻿<Page
+    x:Name="Page"
+    x:Class="Project.TaskListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Project"
+    xmlns:md="using:Project.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Name="All" Background="White">
+        <Image Source="Assets/7.jpeg" HorizontalAlignment="Right"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="textBlock" Grid.Row="0" Text="  Task List" Style="{StaticResource HeaderTextBlockStyle}"/>
+                <GridView
+                	Grid.Row="1" IsItemClickEnabled="True"
+                	ItemClick="TaskListView_ItemClick"
+                	x:Name="TaskListView"
+                	ItemsSource="{x:Bind ViewModel.AllItems}" Opacity="0.8" BorderBrush="Black" Foreground="Black">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="md:TaskItem">
+                            <Grid Height="300" Width="300" BorderThickness="1">
+                                <Grid.BorderBrush>
+                                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                </Grid.BorderBrush>
+                                <Image Source="Assets/6.jpeg" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="51" Height="117" />
+                                <Image Source="{x:Bind source}" Height="240" Width="240" Margin="0,3,12,7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{x:Bind title}" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="Black" FontWeight="Normal" FontSize="20" LineHeight="20" TextWrapping="Wrap" Margin="24,0,0,0" />
+                                <TextBlock Text="创建者:" VerticalAlignment="Top" HorizontalAlignment="Right" Foreground="Black" FontWeight="Normal" FontSize="20" LineHeight="20" TextWrapping="Wrap" Margin="0,0,55,0"/>
+                                <TextBlock Text="{x:Bind username}" VerticalAlignment="Top" HorizontalAlignment="Right" Foreground="Black" FontWeight="Normal" FontSize="20" LineHeight="20" TextWrapping="Wrap" Margin="0,0,22,0"/>
+                                <AppBarButton Icon="Setting" IsCompact="True" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="35" Background="White">
+                                    <AppBarButton.Flyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem Text="Edit" Click="Edit_Click"/>
+                                            <MenuFlyoutItem Text="Delete" Click="Delete_Click"/>
+                                            <MenuFlyoutItem Text="Share" Click="Share_Click"/>
+                                        </MenuFlyout>
+                                    </AppBarButton.Flyout>
+                                </AppBarButton>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
+

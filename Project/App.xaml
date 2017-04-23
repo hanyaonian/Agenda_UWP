@@ -1,0 +1,43 @@
+﻿<Application
+    x:Class="Project.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Project"
+    RequestedTheme="Light">
+    
+    <Application.Resources>
+        <DataTemplate x:Key="MessageDataTemplate">
+            <Grid HorizontalAlignment="Left"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" CornerRadius="4" Background="LightGray" Padding="15">
+                    <TextBlock Text="{Binding Comment}"></TextBlock>
+                </Grid>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock Text="{Binding Name}" Foreground="LightGray"></TextBlock>
+                    <TextBlock Text="{Binding Published}"  Foreground="LightGray" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SelfMessageDataTemplate">
+            <Grid HorizontalAlignment="Right"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" CornerRadius="4" Background="Green" Padding="15">
+                    <TextBlock Text="{Binding Comment}" Foreground="White"></TextBlock>
+                </Grid>
+                <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Published}"  Foreground="LightGray" Margin="0,0,10,0"></TextBlock>
+                    <TextBlock Text="{Binding Name}" Foreground="LightGray"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <local:MessageItemDataTemplateSelector x:Key="MessageItemDataTemplateSelector"></local:MessageItemDataTemplateSelector>
+    </Application.Resources>
+
+</Application>

@@ -1,0 +1,102 @@
+﻿<Page
+    x:Class="Project.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Project"
+    xmlns:md="using:Project.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:DatetimeToStringConverter x:Key="DatetimeToStringConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/2.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock x:Name="Welcome" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Welcome!" VerticalAlignment="Top" FontSize="38.667" Foreground="Black" Margin="10"/>
+            </Grid>
+            <ListView
+                      Grid.Row="1" IsItemClickEnabled="True"
+                      ItemClick="toDoList_ItemClick"
+                      x:Name="toDoList"
+                      ItemsSource="{x:Bind MyToDoTask}" HorizontalAlignment="Left" RenderTransformOrigin="0.481,0.485" Margin="0,0,0,-1">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="md:TaskItem">
+                        <Grid Height="100">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind title}" Grid.Column="2" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+                            <TextBlock Text="{x:Bind Path=datetime,Converter={StaticResource DatetimeToStringConverter}}" Grid.Column="3" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Button x:Name="LoginOut_B" Content="LogOut"  Style="{StaticResource PivotTitleContentControlStyle}"   Background="#33005B68" FontSize="26.667" Click="LoginOut_B_Click" Width="263" Height="88" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="203,92,174,180"/>
+                <Button x:Name="Password_change" Content="Password_change" Style="{StaticResource PivotTitleContentControlStyle}"  Background="#33005B68" FontSize="26.667" Click="Password_change_Click" Height="88" Width="263" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="203,230,174,42"/>
+            </Grid>
+            <Grid Grid.Row="0">
+                <CalendarView HorizontalAlignment="Center" Height="310" VerticalAlignment="Center" Width="474"/>
+            </Grid>
+        </Grid>
+    </Grid>
+    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="185*"/>
+                    <RowDefinition Height="27*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CalendarView HorizontalAlignment="Left" Height="306" Margin="150,75,0,0" VerticalAlignment="Top" Width="372"/>
+
+                </Grid>
+                <Grid Grid.Row="2">
+                    <CommandBar VerticalAlignment="Bottom">
+                        <AppBarButton x:Name="Clender_B" Label="Clender" Icon="Calendar" Click=""/>
+                        <AppBarButton x:Name="LoginOut_B" Icon="Back" Label="Out"  Click="LoginOut_B_Click"/>
+                    </CommandBar>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+
+            </Grid>
+        </Grid>
+    </Grid>-->
+
+</Page>

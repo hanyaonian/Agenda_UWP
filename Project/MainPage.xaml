@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="Project.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Project"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#FF00A2E8">
+        <Button Click="Button_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" VerticalAlignment="Top" Width="50" Height="50"/>
+        <SplitView Name="mySplit" DisplayMode="CompactOverlay" CompactPaneLength="50" OpenPaneLength="170" IsPaneOpen="False" Tag="主页">
+            <SplitView.Pane>
+                <StackPanel Background="#FF877670">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button  Grid.Column="0" Background="Gray" Click="Button_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" VerticalAlignment="Top" Width="50" Height="50"></Button>
+                            <TextBlock Grid.Column="1" Text="目录" Margin="20,10,20,0" FontSize="21.333" ></TextBlock>
+                        </Grid>
+
+                        <ListView Grid.Row="1" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
+                            <ListViewItem>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <SymbolIcon Grid.Column ="0" Symbol="Home" Name="HomePage" />
+                                    <TextBlock Grid.Column="1" Text="主页" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="43,3,-33,7"></TextBlock>
+                                </Grid>
+                            </ListViewItem>
+                            <ListViewItem >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <SymbolIcon Grid.Column ="0" Symbol="Add" x:Name="AddTask"/>
+                                    <TextBlock Grid.Column="1" Text="发布任务" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="43,3,-33,7"></TextBlock>
+                                </Grid>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <SymbolIcon Grid.Column ="0" Symbol="Read" x:Name="LookupTask" />
+                                    <TextBlock Grid.Column="1" Text="查看任务" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="43,3,-33,7"></TextBlock>
+                                </Grid>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <SymbolIcon Grid.Column ="0" Symbol="Contact" x:Name="ChatPage" />
+                                    <TextBlock Grid.Column="1" Text="聊天助理" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="43,3,-33,7"></TextBlock>
+                                </Grid>
+                            </ListViewItem>
+                        </ListView>
+                    </Grid>
+                </StackPanel>
+            </SplitView.Pane>
+
+            <SplitView.Content>
+                <Frame x:Name="frame"></Frame>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>
